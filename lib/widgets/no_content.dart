@@ -28,14 +28,13 @@ class NoContent extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              title ?? "Nothing to see  here — yet",
+              title ?? "Nothing to see here yet",
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
             ),
             SizedBox(height: 10),
             Text(
-              desc ??
-                  "When you do have some transactions, you’ll find  it here",
+              desc ?? "Something seems wrong",
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
             ),

@@ -19,7 +19,6 @@ class _AllPhotoScreenState extends State<AllPhotoScreen> {
   int nextAlbumId = 1;
   bool loading = true;
   List<Photo> allPhotos = [];
-  bool _alreadyLoading = false;
 
   ScrollController scrollController = ScrollController();
 
@@ -33,7 +32,7 @@ class _AllPhotoScreenState extends State<AllPhotoScreen> {
   void pagination() async {
     if ((scrollController.position.pixels ==
             scrollController.position.maxScrollExtent &&
-        !_alreadyLoading)) {
+        !loading)) {
       fetchPhotos();
     }
   }
@@ -88,9 +87,30 @@ class _AllPhotoScreenState extends State<AllPhotoScreen> {
                   ),
                 )
               : allPhotos.isEmpty
-                  ? Row(
+                  ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [NoContent()],
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        NoContent(
+                          btn: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () => fetchPhotos(),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              margin: const EdgeInsets.only(top: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(22.0)),
+                                  color: Colors.black.withOpacity(.83)),
+                              child: Text(
+                                "Retry",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     )
                   : Column(
                       mainAxisSize: MainAxisSize.min,
